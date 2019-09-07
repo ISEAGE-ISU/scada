@@ -1,8 +1,8 @@
 package generator
 
-import(
-	"os"
+import (
 	"github.com/ISEAGE-ISU/scada"
+	"os"
 )
 
 func tokSet(level string) (scada.TokenFunc, error) {
@@ -10,7 +10,7 @@ func tokSet(level string) (scada.TokenFunc, error) {
 }
 
 func Root(tok string) (scada.TokenFunc, error) {
-	switch tok{
+	switch tok {
 	case "start":
 		return nil, Start()
 	case "stop":

@@ -1,12 +1,12 @@
 package crane
 
 import (
-	"os"
-	"io/ioutil"
-	"strconv"
 	"errors"
-	"log"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	"strconv"
 )
 
 const RootDir = "/tmp/crane"
@@ -25,7 +25,7 @@ var ErrAlreadyStarted = errors.New("Crane is already on")
 var ErrNoPower = errors.New("Not enough Power")
 
 func haveEnoughPower() bool {
-	if _ , err := os.Stat(GenOnFile); err != nil{
+	if _, err := os.Stat(GenOnFile); err != nil {
 		return false
 	}
 	f, err := os.Open(GenPowerOut)
@@ -129,4 +129,3 @@ func IsOK() bool {
 	}
 	return true
 }
-

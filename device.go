@@ -1,9 +1,9 @@
 package scada
 
-import(
+import (
+	"errors"
 	"net"
 	"net/http"
-	"errors"
 	"strings"
 )
 
@@ -16,10 +16,10 @@ type checkOK func() bool
 type Status func() string
 
 type Device struct {
-	Root TokenFunc
-	Status Status
+	Root    TokenFunc
+	Status  Status
 	CheckOK checkOK
-	Con net.Listener
+	Con     net.Listener
 }
 
 func (d *Device) StartSCADA() error {

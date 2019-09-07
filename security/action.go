@@ -1,12 +1,12 @@
 package security
 
 import (
-	"os"
-	"io/ioutil"
-	"strconv"
 	"errors"
-	"log"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	"strconv"
 
 	"time"
 )
@@ -47,7 +47,7 @@ func fillStorage() {
 }
 
 func haveEnoughPower() bool {
-	if _ , err := os.Stat(GenOnFile); err != nil{
+	if _, err := os.Stat(GenOnFile); err != nil {
 		return false
 	}
 	f, err := os.Open(GenPowerOut)
@@ -130,7 +130,7 @@ func IsOK() bool {
 		return false
 	}
 	space, err := strconv.Atoi(string(b))
-	if err != nil ||  space < 0 || space > 2*1000 {
+	if err != nil || space < 0 || space > 2*1000 {
 		return false
 	}
 	return true

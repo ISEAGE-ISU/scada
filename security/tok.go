@@ -1,15 +1,15 @@
 package security
 
-import(
-	"os"
+import (
 	"errors"
 	"io/ioutil"
+	"os"
 
 	"github.com/ISEAGE-ISU/scada"
 )
 
 func Root(tok string) (scada.TokenFunc, error) {
-	switch tok{
+	switch tok {
 	case "start":
 		return nil, Start()
 	case "stop":
@@ -24,7 +24,7 @@ func Root(tok string) (scada.TokenFunc, error) {
 		}
 		b, err := ioutil.ReadAll(f)
 		if err != nil {
-			return nil, err 
+			return nil, err
 		}
 		return nil, errors.New(string(b) + " GB used")
 	}

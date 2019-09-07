@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/ISEAGE-ISU/scada"
-	"github.com/ISEAGE-ISU/scada/generator"
 	"github.com/ISEAGE-ISU/scada/crane"
+	"github.com/ISEAGE-ISU/scada/generator"
 	"github.com/ISEAGE-ISU/scada/security"
 )
 

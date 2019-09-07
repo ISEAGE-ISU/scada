@@ -1,11 +1,11 @@
 package generator
 
-import(
-	"log"
+import (
 	"errors"
-	"os"
 	"fmt"
 	"io/ioutil"
+	"log"
+	"os"
 	"strconv"
 	"time"
 )
