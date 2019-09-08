@@ -1,0 +1,29 @@
+#!/bin/sh
+
+. /etc/rc.subr
+
+name=scada
+rcvar=scada_enable
+
+pidfile="/var/run/${name}.pid"
+
+command="/usr/local/bin/scada"
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+
+load_rc_config $name
+: ${scada_enable:=no}
+: ${DEVICE=gen}
+
+scada_start()
+{
+        DEVICE="$DEVICE" "$command" "$pidfile" >/var/log/scada.log 2>&1 &
+}
+
+scada_stop(){
+        echo 'power' | nc localhost 1337
+        rm -f /var/run/"${name}".pid
+}
+
+run_rc_command "$1"
