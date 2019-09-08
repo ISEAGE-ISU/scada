@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
-	"fmt"
 
 	"github.com/ISEAGE-ISU/scada"
 	"github.com/ISEAGE-ISU/scada/crane"
@@ -38,5 +38,5 @@ func main() {
 	}
 
 	go d.StartSCADA()
-	log.Fatal(d.StartHTTP(":8080"))
+	log.Fatal(d.StartHTTP(":80"))
 }
