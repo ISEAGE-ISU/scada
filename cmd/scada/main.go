@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"fmt"
 
 	"github.com/ISEAGE-ISU/scada"
 	"github.com/ISEAGE-ISU/scada/crane"
@@ -15,6 +16,15 @@ func main() {
 	if found == false {
 		log.Fatal("DEVICE not set")
 	}
+
+	if len(os.Args) > 1 {
+		f, err := os.Create(os.Args[1])
+		if err != nil {
+			log.Fatal("could not create pid file:", err)
+		}
+		f.Write([]byte(fmt.Sprintf("%d", os.Getpid())))
+	}
+
 	var d *scada.Device
 	switch s {
 	case "gen":
