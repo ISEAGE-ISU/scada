@@ -7,12 +7,13 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"sync"
 	"time"
 )
 
 func init() {
 	os.Mkdir(RootDir, 0777)
-	hardwareLine = make(chan struct{})
+	hardwareLine = make(chan struct{}, 2)
 	go hardwareSecurity()
 }
 
@@ -26,7 +27,6 @@ var hardwareLine chan struct{}
 
 func hardwareSecurity() error {
 	tick := time.Tick(10 * time.Second)
-	hardwareLine <- struct{}{}
 	for {
 		<-tick
 		hardwareLine <- struct{}{}
@@ -34,6 +34,12 @@ func hardwareSecurity() error {
 }
 
 func Start() error {
+	//Allow us start on first run always
+	var once sync.Once
+	once.Do(func() {
+		hardwareLine <- struct{}{}
+	})
+
 	if _, err := os.Stat(onFile); err == nil {
 		return ErrAlreadyStarted
 	}
